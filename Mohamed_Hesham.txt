@@ -1,3 +1,14 @@
 My Name is Mohamed 
 
 انا اسمى محمد
+
+
+ // Insert Removed Trips
+     
+     public void insertRemovedTrip(int tripId) throws SQLException {
+        String insertSql = "INSERT INTO removed_trips_firebase (trip_id) VALUES (?)";
+           PreparedStatement ps = con.prepareStatement(insertSql);
+            ps.setInt(1, tripId);
+            ps.executeUpdate();
+        
+    }
