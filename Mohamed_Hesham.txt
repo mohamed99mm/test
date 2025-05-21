@@ -60,7 +60,3 @@ public ArrayList<LocationPoint> getRoutePoints(int routeId, String orderingColum
         return results;
     }
 
-
-
-
-
