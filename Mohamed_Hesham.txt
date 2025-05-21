@@ -33,3 +33,32 @@ public ArrayList<Integer> getOldPoints() throws SQLException {
         }
         return tripsIds;
     }
+
+
+public ArrayList<LocationPoint> getRoutePoints(int routeId, String orderingColumn) throws SQLException {
+        ArrayList<LocationPoint> results = new ArrayList<>();
+
+        String selectQuery = "select location_point.address, location_point.latitude , "
+                + " location_point.longitude from location_point, route_points "
+                + " where route_points.point_id = location_point.id "
+                + " and route_points.route_id = " + routeId
+                + " and route_points.deleted = 0 order by route_points." + orderingColumn + " asc ";
+        PreparedStatement queryPs = con.prepareStatement(selectQuery);
+        ResultSet rs = queryPs.executeQuery();
+        while (rs.next()) {
+
+            LocationPoint lp = new LocationPoint();
+            lp.address = rs.getString("address");
+            lp.lat = rs.getString("latitude");
+            lp.lng = rs.getString("longitude");
+
+            results.add(lp);
+
+        }
+        return results;
+    }
+
+
+
+
+
