@@ -114,3 +114,14 @@ Hello From the Ocean
 Hello From the Ocean 
 
 Hello Hello
+
+1234515 
+
+ public void deleteUnAccurateRecords(String shiftTime) throws SQLException {
+        String query = "DELETE FROM voda_point_traffic WHERE is_calculated_on_time = 0 AND shift_time = ?";
+
+        try (PreparedStatement stmt = con.prepareStatement(query)) {
+            stmt.setString(1, shiftTime);
+            stmt.executeUpdate();
+        }
+    }
