@@ -14,6 +14,7 @@ My Name is Mohamed
     }
 
 
+
 public ArrayList<Integer> getOldPoints() throws SQLException {
         ArrayList<Integer> tripsIds = new ArrayList<>();
         int id = 0;
@@ -33,6 +34,7 @@ public ArrayList<Integer> getOldPoints() throws SQLException {
         }
         return tripsIds;
     }
+
 
 
 public ArrayList<LocationPoint> getRoutePoints(int routeId, String orderingColumn) throws SQLException {
