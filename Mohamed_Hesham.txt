@@ -12,3 +12,24 @@ My Name is Mohamed
             ps.executeUpdate();
         
     }
+
+
+public ArrayList<Integer> getOldPoints() throws SQLException {
+        ArrayList<Integer> tripsIds = new ArrayList<>();
+        int id = 0;
+
+        String selectQuery = "select id from trips where status in (?,?,?) and start_time < NOW() - INTERVAL 1 HOUR and start_time > NOW() - INTERVAL 300 HOUR " +
+       " and trips.id not in (select distinct trip_id from removed_trips_firebase ) limit 50";
+        PreparedStatement queryPs = con.prepareStatement(selectQuery);
+        queryPs.setInt(1, 2);
+         queryPs.setInt(2, -3);
+         queryPs.setInt(3, 4);
+        ResultSet rs = queryPs.executeQuery();
+        while (rs.next()) {     
+            id = rs.getInt("id");
+           
+            tripsIds.add(id);
+
+        }
+        return tripsIds;
+    }
